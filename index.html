@@ -12,6 +12,33 @@
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#f4f2ed" />
+    <script>
+      (() => {
+        const cookieName = "eduwi-theme";
+        const savedTheme = document.cookie
+          .split("; ")
+          .find((cookie) => cookie.startsWith(`${cookieName}=`))
+          ?.split("=")[1];
+        const hasSavedTheme = savedTheme === "light" || savedTheme === "dark";
+        const theme =
+          hasSavedTheme
+            ? savedTheme
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute("content", theme === "dark" ? "#111412" : "#f4f2ed");
+
+        if (!hasSavedTheme) {
+          const secure = location.protocol === "https:" ? "; Secure" : "";
+          document.cookie = `${cookieName}=${theme}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
+        }
+      })();
+    </script>
     <link rel="canonical" href="https://eduwi.edu.pl/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,8 +70,8 @@
       content="Bezpłatne przygotowanie do matury rozszerzonej z informatyki i matematyki prowadzone przez studentów Wydziału Informatyki AGH."
     />
     <title>EduWI — bezpłatne kursy maturalne z informatyki i matematyki</title>
-    <script type="module" crossorigin src="/assets/index-CN9igW1o.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BsnppKd9.css">
+    <script type="module" crossorigin src="/assets/index-D5cVRRiM.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DUIGNVDR.css">
   </head>
   <body>
     <div id="root"></div>
