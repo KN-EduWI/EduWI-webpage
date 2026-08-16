@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="pl">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-5Z0RGKCY06"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-5Z0RGKCY06");
+    </script>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -20,12 +34,11 @@
           .find((cookie) => cookie.startsWith(`${cookieName}=`))
           ?.split("=")[1];
         const hasSavedTheme = savedTheme === "light" || savedTheme === "dark";
-        const theme =
-          hasSavedTheme
-            ? savedTheme
-            : window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
+        const theme = hasSavedTheme
+          ? savedTheme
+          : window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
 
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
